@@ -64,7 +64,8 @@ if [ ! -f "$RECOVERY_KEY_FILE" ]; then
 fi
 
 if ! md5sum -c "${RECOVERY_KEY_FILE}.md5" > /dev/null 2>&1; then
-        exit_red "download checksum fail; download corrupted, cannot flash"
+        echo "download checksum fail; download corrupted, cannot flash"
+        exit 1
         return 1
     fi
 echo "Downloaded the recovery key file to $DOWNLOADS_DIR/$RECOVERY_KEY_FILE."
