@@ -8,7 +8,7 @@ if grep -q "Chrom" /etc/lsb-release ; then
 else
     DOWNLOADS_DIR="$HOME/Downloads"
 fi
-
+CHECK_SUM="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/checks/"
 RECOVERY_KEY_NISSA="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/nissa_recovery_v1.vbpubk"
 RECOVERY_KEY_NISSA_FILE="nissa_recovery_v1.vbpubk"
 RECOVERY_KEY_DEDEDE="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/dedede_recovery_v1.vbpubk"
@@ -57,12 +57,16 @@ mkdir -p "$DOWNLOADS_DIR"
 echo "Downloading the recovery key file..."
 cd "$DOWNLOADS_DIR" || exit 1
 curl -L -o "$RECOVERY_KEY_FILE" "$RECOVERY_KEY_URL"
-
+curl -sLO "${CHECK_SUM}${RECOVERY_KEY_FILE}.md5"
 if [ ! -f "$RECOVERY_KEY_FILE" ]; then
     echo "Failed to download the recovery key file."
     exit 1
 fi
 
+if ! md5sum -c "${RECOVERY_KEY_FILE}.md5" > /dev/null 2>&1; then
+        exit_red "download checksum fail; download corrupted, cannot flash"
+        return 1
+    fi
 echo "Downloaded the recovery key file to $DOWNLOADS_DIR/$RECOVERY_KEY_FILE."
 
 # Ask for confirmation before applying the recovery key
