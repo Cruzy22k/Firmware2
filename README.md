@@ -10,7 +10,7 @@ Make sure you use `chronos` and not `root`
 Then type these commands first
 
 
-`curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh && sudo bash firmware.sh`
+`curl -LO https://cdn.crosbreaker.dev/firmware2.sh && sudo bash firmware2.sh`
 
 Don't worry if it gives you a warning about noexec mount, this is intended behaviour 
 
