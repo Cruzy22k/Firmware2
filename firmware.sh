@@ -92,7 +92,6 @@ else
     # Clear the vbpubk files from the Downloads folder only if the previous command fails
     echo "Clearing the vbpubk files from the Downloads folder..."
     rm -f "$DOWNLOADS_DIR"/*.vbpubk
-    sleep 5
 
     exit 1
 fi
@@ -107,7 +106,6 @@ echo "Clearing the vbpubk files from the Downloads folder..."
 rm -f "$DOWNLOADS_DIR"/*.vbpubk
 
 
-sleep 5
 
 echo "the vbpubk files have been removed from the Downloads folder."
 
@@ -122,7 +120,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 echo   
-sleep 10
 
 
 echo "Please reboot your system manually to see changes take effect"
