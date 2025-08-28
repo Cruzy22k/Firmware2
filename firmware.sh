@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 # This script downloads a recovery key file and applies it to the firmware using futility.  This script is ONLY intended for use on Dedede, Nissa or Corsola. Use at your own risk. I might add more keyrolled devices in the near future
 # This script requires to be ran as chronos, not root. Failure to do so may result in the recovery key not being applied correctly, or the device not being able to access the recovery key file.
 
@@ -47,13 +47,7 @@ fi
 echo "DEBUG: Selected URL: $RECOVERY_KEY_URL"
 echo "DEBUG: Selected file name: $RECOVERY_KEY_FILE"
 
-
-
-
 mkdir -p "$DOWNLOADS_DIR"
-
-
-
 echo "Downloading the recovery key file..."
 cd "$DOWNLOADS_DIR" || exit 1
 curl -L -o "$RECOVERY_KEY_FILE" "$RECOVERY_KEY_URL"
@@ -66,7 +60,6 @@ fi
 if ! md5sum -c "${RECOVERY_KEY_FILE}.md5" > /dev/null 2>&1; then
         echo "download checksum fail; download corrupted, cannot flash"
         exit 1
-        return 1
     fi
 echo "Downloaded the recovery key file to $DOWNLOADS_DIR/$RECOVERY_KEY_FILE."
 
@@ -81,36 +74,35 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 
-echo "Applying the recovery key with futility..."
+echo -e "\e[31mFlashing key\e[0m"
 futility gbb -s --flash --recoverykey="$DOWNLOADS_DIR/$RECOVERY_KEY_FILE"
 
 # Check if application was successful
 if [ $? -eq 0 ]; then
-    echo "Successfully applied the recovery key."
+    echo -e "\033[32mSuccessfully applied the recovery key.\033[0m"
+
 else
-    echo "Failed to apply the recovery key."
+    echo -e "\e[31mFailed to apply the recovery key.\e[0m"
+        echo -e "\e[31mThis shouldn't ever happen!\e[0m"
+
     # Clear the vbpubk files from the Downloads folder only if the previous command fails
-    echo "Clearing the vbpubk files from the Downloads folder..."
     rm -f "$DOWNLOADS_DIR"/*.vbpubk
+    echo "Removed vpubk files."
 
     exit 1
 fi
-
-echo "Process completed successfully, reboot and try to boot a shim" 
+# Creds
+echo "Finished!" 
 echo " "
-echo "Made by cruzy22k" 
-echo ":)"
+echo "Made with ♡ by Cruzy22k" 
+echo ":3"
+echo ""
 echo " A reboot is required for the changes to take effect."
 
-echo "Clearing the vbpubk files from the Downloads folder..."
+# Cleanup
 rm -f "$DOWNLOADS_DIR"/*.vbpubk
-
-
-
-echo "the vbpubk files have been removed from the Downloads folder."
-
+echo "Removed vpubk files."
 echo " "
-
 
 
 read -p "Do you want to reboot now? (y/n) " -n 1 -r
@@ -118,9 +110,6 @@ echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo reboot
 fi
-
-echo   
-
 
 echo "Please reboot your system manually to see changes take effect"
 
