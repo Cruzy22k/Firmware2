@@ -15,6 +15,12 @@ RECOVERY_KEY_DEDEDE="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/de
 RECOVERY_KEY_DEDEDE_FILE="dedede_recovery_v1.vbpubk"
 RECOVERY_KEY_CORSOLA="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/corsola_recovery_v1.vbpubk"
 RECOVERY_KEY_CORSOLA_FILE="corsola_recovery_v1.vbpubk"
+output=$(flashrom --wp-status 2>&1) 
+if ! echo "$output" | grep -qi "write.*protect.*disabled"; then   # this should check for WP presence
+    echo "Could not confirm WP is disabled. Output was:"
+    echo "$output"
+    exit 1
+fi
 
 echo -e "\e[32m<Firmware2>  Copyleft (C) 2024  Cruzy22k\e[0m"
 echo -e "\e[32mThis program comes with ABSOLUTELY NO WARRANTY.\e[0m"
