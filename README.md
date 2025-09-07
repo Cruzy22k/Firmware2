@@ -27,6 +27,7 @@ curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh &
 
 
 Follow the prompts, ensuring you have firmware and hardware Write-Protect Disabled as this will not work with WP ON. 
+----
 See [MrChromeBox](https://docs.mrchromebox.tech/docs/supported-devices.html) for device specific instructions on how to disable it. 
 Then once its disabled, come back here.
 
