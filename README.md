@@ -15,9 +15,8 @@ Make sure you use `chronos` and not `root`
 > Make sure that you know the exact device name for your chromebook.
 > All ChromeOS devices have a board name, which determines which firmware, OS build, etc a device uses.
 > The board name is listed `chrome://version`. Look for `nissa`, `dedede` or `corsola`. If you are one of those specific boards, you can unkeyroll.
-Then type this command to download and execute the script
 ----
-
+Type this command to download and execute the script
 ```
 curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh && sudo bash firmware.sh
 ```
