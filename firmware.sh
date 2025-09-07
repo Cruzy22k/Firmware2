@@ -110,7 +110,7 @@ fi
 # Creds
 echo "Finished!" 
 echo " "
-echo "Made with ♡ by Cruzy22k" 
+echo "Made by Cruzy22k" 
 echo ":3"
 echo ""
 echo " A reboot is required for the changes to take effect."
