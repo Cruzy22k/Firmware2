@@ -29,6 +29,7 @@ echo
 
 
 echo "Determining key url, and file name..."
+#Automatic board determination taken from https://github.com/MercuryWorkshop/sh1mmer/blob/beautifulworld/wax/payloads/br0ker.sh
 if [ -f /etc/lsb-release ]; then
 	BOARD=$(grep -m 1 "^CHROMEOS_RELEASE_BOARD=" /etc/lsb-release)
 	BOARD="${BOARD#*=}"
