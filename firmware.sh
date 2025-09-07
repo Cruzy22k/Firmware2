@@ -28,25 +28,35 @@ echo -e "\e[32mThis is free software, and you are welcome to redistribute it und
 echo
 
 
-echo "please select what device you have, dedede (1), nissa (2) or corsola (3)"
-echo    
-read -p "Enter the number of the device you have: " -n 1 -r
-echo   
-
-
-echo "DEBUG: You entered '$REPLY'"
-if [[ $REPLY =~ ^[1]$ ]]; then
-    RECOVERY_KEY_URL="$RECOVERY_KEY_DEDEDE"
-    RECOVERY_KEY_FILE="$RECOVERY_KEY_DEDEDE_FILE"
-elif [[ $REPLY =~ ^[2]$ ]]; then
-    RECOVERY_KEY_URL="$RECOVERY_KEY_NISSA"
-    RECOVERY_KEY_FILE="$RECOVERY_KEY_NISSA_FILE"
-elif [[ $REPLY =~ ^[3]$ ]]; then
-    RECOVERY_KEY_URL="$RECOVERY_KEY_CORSOLA"
-    RECOVERY_KEY_FILE="$RECOVERY_KEY_CORSOLA_FILE"
+echo "Determining key url, and file name..."
+#Automatic board determination taken from https://github.com/MercuryWorkshop/sh1mmer/blob/beautifulworld/wax/payloads/br0ker.sh
+if [ -f /etc/lsb-release ]; then
+	BOARD=$(grep -m 1 "^CHROMEOS_RELEASE_BOARD=" /etc/lsb-release)
+	BOARD="${BOARD#*=}"
+	BOARD="${BOARD%-signed-*}"
+    RECOVERY_KEY_URL="https://raw.githubusercontent.com/Cruzy22k/NissaFW2/main/${BOARD}_recovery_v1.vbpubk"
+    RECOVERY_KEY_FILE="${BOARD}_recovery_v1.vbpubk"
 else
+    echo "Failed to determine board."
+    echo "Falling back on manual selection."
+    echo "please select what device you have, dedede (1), nissa (2) or corsola (3)"
+    echo    
+    read -p "Enter the number of the device you have: " -n 1 -r
+    echo
+    echo "DEBUG: You entered '$REPLY'"
+    if [[ $REPLY =~ ^[1]$ ]]; then
+        RECOVERY_KEY_URL="$RECOVERY_KEY_DEDEDE"
+        RECOVERY_KEY_FILE="$RECOVERY_KEY_DEDEDE_FILE"
+    elif [[ $REPLY =~ ^[2]$ ]]; then
+        RECOVERY_KEY_URL="$RECOVERY_KEY_NISSA"
+        RECOVERY_KEY_FILE="$RECOVERY_KEY_NISSA_FILE"
+    elif [[ $REPLY =~ ^[3]$ ]]; then
+        RECOVERY_KEY_URL="$RECOVERY_KEY_CORSOLA"
+        RECOVERY_KEY_FILE="$RECOVERY_KEY_CORSOLA_FILE"
+    else
     echo "Invalid input. Please enter 1, 2 or 3."
     exit 1
+    fi
 fi
 
 # Debug output:
