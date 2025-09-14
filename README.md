@@ -6,6 +6,10 @@
 > It comes with ABSOLUTELY NO WARRANTY.
 > It is meant for Nissa, Corsola and Dedede ONLY
 ----
+## Prerequisites
+- An internet connection
+- A nissa, corsola, or dedede.
+- A brain (optional)
 ## Usage
 To use this, first make sure that you are connected to an unmanaged network, and that you are signed into a valid account on the Chromebook. 
 Then switch to VT2 and enter chronos by typing `chronos` 
