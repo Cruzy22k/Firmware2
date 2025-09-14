@@ -34,7 +34,8 @@ Follow the prompts, ensuring you have firmware and hardware Write-Protect Disabl
 See [MrChromeBox](https://docs.mrchromebox.tech/docs/supported-devices.html) for device specific instructions on how to disable it. 
 Then once its disabled, come back here.
 
-**Then, you're done. Boot a shim or whatever.**  
+**Then, you're done. Boot a shim or whatever.**    
+
 Made with ♡ by Cruzy
 
 Pull requests welcome with fixes. 
