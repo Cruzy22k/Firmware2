@@ -8,7 +8,7 @@
 ----
 ## Prerequisites
 - An internet connection
-- A nissa, corsola, or dedede.
+- A (keyrolled) nissa, corsola, or dedede.
 - A brain (optional)
 ## Usage
 To use this, first make sure that you are connected to an unmanaged network, and that you are signed into a valid account on the Chromebook. 
@@ -22,15 +22,15 @@ Make sure you use `chronos` and not `root`
 ----
 Type this command to download and execute the script:  
 
-`curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh && sudo bash firmware.sh
-`
+`curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh && sudo bash firmware.sh`
+
 > [!NOTE]  
 > Don't worry if it gives you a warning about noexec mount, this is intended behaviour 
 
 
 Follow the prompts, ensuring you have firmware and hardware Write-Protect Disabled as this will not work with WP ON. 
 > [!NOTE]  
-> See [MrChromeBox](https://docs.mrchromebox.tech/docs/supported-devices.html) for device specific instructions on how to disable it. 
+> See [MrChromebox](https://docs.mrchromebox.tech/docs/supported-devices.html) for device specific instructions on how to disable it. 
 Then once its disabled, come back here.
 
 **Then, you're done. Boot a shim or whatever.**    
