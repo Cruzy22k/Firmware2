@@ -24,6 +24,10 @@ Type this command to download and execute the script:
 
 `curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/firmware.sh && sudo bash firmware.sh`
 
+If you like to rekeyroll for whatever reason (to restore old keys), execute this script:
+
+`curl -LO https://raw.githubusercontent.com/Cruzy22k/Firmware2/main/keyroll.sh && sudo bash keyroll.sh`
+
 > [!NOTE]  
 > Don't worry if it gives you a warning about noexec mount, this is intended behaviour 
 
